@@ -1,34 +1,25 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError } from 'rxjs/operators'
-import { DataService, Person } from './shared/data.service';
+import { DataService } from './shared/data.service';
 import { Subject, Observable, of, concat } from 'rxjs';
 
 
 @Component({
     selector: 'select-search',
     changeDetection: ChangeDetectionStrategy.Default,
-    template: ` 
-        <ng-select [items]="people3$ | async"
-                   bindLabel="text"
-                   [addTag]="true"
-                   [multiple]="true"
-                   [hideSelected]="true"
-                   [loading]="people3Loading"
-                   [typeahead]="people3input$"
-                   [(ngModel)]="selectedPersons">
-        </ng-select>
-      
-        <p style="margin-bottom:300px">
-            Selected persons: {{selectedPersons | json}}
-        </p>
-    `
+    templateUrl: './search.component.html'
 })
 export class SelectSearchComponent {
-
+    //[multiple]="true"
     people3$: Observable<any[]>;
     people3Loading = false;
     people3input$ = new Subject<string>();
-    selectedPersons: any[] = <any>[ { text: 'Other' }];
+    selectedPersons: any = {
+        city: "",
+    state: "",
+    street_line: "",
+    text: ""
+}
 
     constructor(private dataService: DataService) { }
 

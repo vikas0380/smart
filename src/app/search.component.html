@@ -1,0 +1,15 @@
+<ng-select [items]="people3$ | async"
+style="width: 25%"
+bindLabel="text"
+[addTag]="true"
+[hideSelected]="true"
+[loading]="people3Loading"
+[typeahead]="people3input$"
+[(ngModel)]="selectedPersons">
+</ng-select>
+<label for="street_line">Address</label>
+<input type="text" id="street_line" disabled [(ngModel)]="selectedPersons.street_line">
+<label for="city">City</label>
+<input type="text" id="city" disabled [(ngModel)]="selectedPersons.city">
+<label for="state">State</label>
+<input type="text" id="state" disabled [(ngModel)]="selectedPersons.state">
